@@ -1,14 +1,12 @@
 from flask import render_template, flash
-from app import app
-from .forms import CalculatorForm
+from app import app, models
+# from .forms import CalculatorForm
 
-# @app.route('/')
-# def index():
-#     user = {'name': 'Sam Wilson'}
-#     return render_template('index.html',
-#                            title='Simple template example',
-#                            user=user)
-
+@app.route('/')
+def index():
+    return render_template('todo.html',
+                           title='Index',
+                           array=models.Todo.query.all())
 # @app.route('/fruit')
 # def displayFruit():
 #     fruits = ["Apple", "Banana", "Orange", "Kiwi"]
