@@ -3,10 +3,13 @@ from app import app, models
 # from .forms import CalculatorForm
 
 @app.route('/')
+
 def index():
+	flash("test")
     return render_template('todo.html',
                            title='Index',
                            array=models.Todo.query.all())
+
 # @app.route('/fruit')
 # def displayFruit():
 #     fruits = ["Apple", "Banana", "Orange", "Kiwi"]
@@ -25,3 +28,9 @@ def index():
 #     return render_template('calculator.html',
 #                            title='Calculator',
 #                            form=form)
+# @app.route('/')
+# def index():
+# 	flash("test")
+# 	return render_template('todo.html',
+# 									titl)
+

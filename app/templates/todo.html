@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+     <ul>
+     {% for message in messages %}
+         <li>{{ message }} </li>
+     {% endfor %}
+     </ul>
+   {% endif %}
+ {% endwith %}
 {% block content %}
 <h1>ToDoList</h1>
 <table class="table table-hover">
@@ -12,23 +21,15 @@
     </thead>
     <tbody>
       {% for row in array %}
+      {% if row.done == False %}
       <tr>
         <td>{{ row.date }}</td>
         <td>{{ row.title }}</td>
         <td>{{ row.description }}</td>
-        <td>{{ row.done }}</td>
+        <td>{{ row.done }}<input type="checkbox" checked data-toggle="toggle" data-on="ToDo" data-off="Done" onclick="{{ row.data }}"></td>
       </tr>
+      {% endif %}
       {% endfor %}
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
     </tbody>
   </table>
 
