@@ -1,36 +1,35 @@
 from flask import render_template, flash
-from app import app, models
-# from .forms import CalculatorForm
+from app import app, models, db
+from .createTask import CreateTask
 
 @app.route('/')
-
 def index():
-	flash("test")
-    return render_template('todo.html',
-                           title='Index',
+	return render_template('todo.html',
+                           title='ToDo List',
                            array=models.Todo.query.all())
 
-# @app.route('/fruit')
-# def displayFruit():
-#     fruits = ["Apple", "Banana", "Orange", "Kiwi"]
-#     return render_template("fruit.html",fruits=fruits)
+@app.route('/mark_completed/<id>')
+def mrk_completed(id):
+	print(id)
+	return ""
 
-# @app.route('/loremipsum')
-# def loremipsum():
-# 	return render_template("loremipsum.html", title="Lorem Ipsum")
+@app.route('/create_task', methods=['GET', 'POST'])
+def create_task():
+	form = CreateTask()
+	if form.validate_on_submit():
+		db.session.add(models.Todo(title=form.task_title.data, description=form.task_description.data, done=False))
+		db.session.commit()
+	return render_template('create_task.html',
+							title="Create a task",
+							form=form)
 
-# @app.route('/calculator', methods=['GET', 'POST'])
-# def calculator():
-#     form = CalculatorForm()
-#     if form.validate_on_submit():
-#       flash('Succesfully received form data. %s + %s  = %s'%(form.num1.data, form.num2.data, form.num1.data+form.num2.data))
-    
-#     return render_template('calculator.html',
-#                            title='Calculator',
-#                            form=form)
-# @app.route('/')
-# def index():
-# 	flash("test")
-# 	return render_template('todo.html',
-# 									titl)
+@app.route('/completed_tasks')
+def completed_task():
+	return render_template('completed_tasks.html',
+							title="Completed tasks")
+
+@app.route('/uncompleted_tasks')
+def uncompleted_task():
+	return render_template('uncompleted_tasks.html',
+							title="Uncompleted tasks")
 

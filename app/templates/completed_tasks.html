@@ -12,14 +12,15 @@
     </thead>
     <tbody>
       {% for row in array %}
+      {% if (row.done == True) %}
       <tr>
         <td>{{ row.date }}</td>
         <td>{{ row.title }}</td>
         <td>{{ row.description }}</td>
         <td>{{ row.done }}<input type="checkbox" checked data-toggle="toggle" data-on="ToDo" data-off="Done" onclick=""></td>
       </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
   </table>
-
 {% endblock %}
