@@ -1,4 +1,4 @@
-from flask import render_template, flash
+from flask import render_template, flash, redirect, url_for
 from app import app, models, db
 from .createTask import CreateTask
 
@@ -8,10 +8,21 @@ def index():
                            title='ToDo List',
                            array=models.Todo.query.all())
 
-@app.route('/mark_completed/<id>')
-def mrk_completed(id):
-	print(id)
-	return ""
+@app.route('/completed_tasks')
+def completed_tasks():
+	return render_template('completed_tasks.html',
+							title="Completed tasks",
+							array=models.Todo.query.all())
+
+@app.route('/uncompleted_tasks')
+def uncompleted_tasks():
+	return render_template('uncompleted_tasks.html',
+							title="Uncompleted tasks",
+							array=models.Todo.query.all())
+
+
+
+
 
 @app.route('/create_task', methods=['GET', 'POST'])
 def create_task():
@@ -23,13 +34,19 @@ def create_task():
 							title="Create a task",
 							form=form)
 
-@app.route('/completed_tasks')
-def completed_task():
-	return render_template('completed_tasks.html',
-							title="Completed tasks")
 
-@app.route('/uncompleted_tasks')
-def uncompleted_task():
-	return render_template('uncompleted_tasks.html',
-							title="Uncompleted tasks")
+
+
+@app.route('/toggle/<page>/<id>')
+def mrk_completed(page, id):
+	models.Todo.query.get(id).done = not models.Todo.query.get(id).done
+	db.session.commit()
+
+	if page== 'completed':
+		return redirect(url_for('completed_tasks'))
+	elif page== 'uncompleted':
+		return redirect(url_for('uncompleted_tasks'))
+	else:
+		return redirect(url_for('index'))
+
 

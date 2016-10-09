@@ -1,10 +1,10 @@
-source flask/bin/activate
-flask/bin/pip install flask
-flask/bin/pip install flask-login
-flask/bin/pip install flask-mail
-flask/bin/pip install flask-sqlalchemy
-flask/bin/pip install sqlalchemy-migrate
-flask/bin/pip install flask-whooshalchemy
-flask/bin/pip install flask-wtf
-flask/bin/pip install flask-babel
-flask/bin/pip install coverage
+source bin/activate
+bin/pip install flask
+bin/pip install flask-login
+bin/pip install flask-mail
+bin/pip install flask-sqlalchemy
+bin/pip install sqlalchemy-migrate
+bin/pip install flask-whooshalchemy
+bin/pip install flask-wtf
+bin/pip install flask-babel
+bin/pip install coverage
