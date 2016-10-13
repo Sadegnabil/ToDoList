@@ -8,7 +8,7 @@ import datetime
 def index():
 	return render_template('todo.html',
                            title='ToDo List',
-                           array=models.Todo.query.all())
+                           array=models.Task.query.all())
 
 
 # Create the route for the completed tasks page
@@ -16,7 +16,7 @@ def index():
 def completed_tasks():
 	return render_template('completed_tasks.html',
 							title="Completed tasks",
-							array=models.Todo.query.all())
+							array=models.Task.query.all())
 
 
 # Create the route for the uncompleted tasks page
@@ -24,7 +24,7 @@ def completed_tasks():
 def uncompleted_tasks():
 	return render_template('uncompleted_tasks.html',
 							title="Uncompleted tasks",
-							array=models.Todo.query.all())
+							array=models.Task.query.all())
 
 
 
@@ -38,7 +38,7 @@ def create_task():
 	# Check if the form is full
 	if form.validate_on_submit():
 		# Add the task to the database and commit the changements
-		db.session.add(models.Todo(title=form.task_title.data, description=form.task_description.data, done=False, date=datetime.datetime.utcnow()))
+		db.session.add(models.Task(title=form.task_title.data, description=form.task_description.data, done=False, date=datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M")))
 		db.session.commit()
 
 		# Reset the fields
@@ -55,7 +55,25 @@ def create_task():
 @app.route('/toggle/<page>/<id>')
 def mrk_completed(page, id):
 	# Retrieve the elements using the id, change its state and commit the changements
-	models.Todo.query.get(id).done = not models.Todo.query.get(id).done
+	models.Task.query.get(id).done = not models.Task.query.get(id).done
+	db.session.commit()
+
+	# Redirect the url to the page where the user was previously
+	if page== 'completed':
+		return redirect(url_for('completed_tasks'))
+	elif page== 'uncompleted':
+		return redirect(url_for('uncompleted_tasks'))
+	else:
+		return redirect(url_for('index'))
+
+
+
+# Create the route used to delete a task
+@app.route('/delete/<page>/<id>')
+def delete(page, id):
+	# Retrieve the task using the id, delete it and commit the changements
+	task = models.Task.query.get(id)
+	db.session.delete(task)
 	db.session.commit()
 
 	# Redirect the url to the page where the user was previously

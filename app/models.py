@@ -1,6 +1,6 @@
 from app import db
 
-class Todo(db.Model):
+class Task(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	date = db.Column(db.String(11))
 	title = db.Column(db.String(500))

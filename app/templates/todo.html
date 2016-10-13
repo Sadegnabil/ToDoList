@@ -8,6 +8,7 @@
         <th>Title</th>
         <th>Description</th>
         <th>Done</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,8 @@
         {% else %}
         <td><input type="checkbox" data-toggle="toggle" data-on="ToDo" data-off="Done" onchange="window.location.href='/toggle/index/{{ row.id }}'"></td>
         {% endif %}
+
+        <td><a href="/delete/index/{{ row.id }}" class="btn btn-danger">X</a></td>
       </tr>
       {% endfor %}
     </tbody>
