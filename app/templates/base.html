@@ -19,11 +19,14 @@
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<!-- Import the favicon -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='static/favicon.ico') }}">
+
 	<!-- Navbar -->
 	<nav class="navbar navbar-inverse">
 	    <div class="container-fluid">
 	    	<div class="navbar-header">
-				<a class="navbar-brand" href="/">ToDo List</a>
+				<a class="navbar-brand" href="/">ToDo List<img src="app/static/favicon.ico"></a>
 	        </div>
 	        <div id="navbar" class="navbar-collapse collapse">
 		        <ul class="nav navbar-nav">

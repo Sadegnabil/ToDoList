@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 <div class "row">
-	<div class="col-md-2 col-md-offset-5">
+	<div class="col-md-8 col-md-offset-1">
 		<h1>Create a task</h1>
 		<form action="" method="post" name="Create a task">
 			{{ form.hidden_tag() }}
 			<p>Title<br>
-				{{ form.task_title }}<br></p>
+				{{ form.task_title }}<br>
+				{% for error in form.task_title.errors %}
+					<span style="color: red;">{{ error }}</span>
+				{% endfor %}</p>
 			<p>Description<br>
-				{{ form.task_description }}</p>
+				{{ form.task_description }}<br>
+				{% for error in form.task_title.errors %}
+					<span style="color: red;">{{ error }}</span>
+				{% endfor %}</p>
 			<p><input type="submit" value="Create" href="/"></p>
 		</form>
 	</div>
