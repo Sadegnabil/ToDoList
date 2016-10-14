@@ -20,18 +20,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Import the favicon -->
-	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<link rel="shortcut icon" href="favicon.png">
 
 	<!-- Navbar -->
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	    <div class="container-fluid">
 	    	<div class="navbar-header">
-				<a class="navbar-brand" href="/">ToDo List<img src="favicon.ico"></a>
+				<a class="navbar-brand" title="ToDo List" href="/">
+					<img src="favicon.png" style="max-width: 30px; margin-top: -5px;">
+				</a>
 	        </div>
 	        <div id="navbar" class="navbar-collapse collapse">
 		        <ul class="nav navbar-nav">
+		        	<li><a href="/">Overview</a></li>
 	            	<li><a href="create_task">Add a task</a></li>
-	            	<li><a href="completed_tasks">Tasks completed</a></li>
+	            	<li><a href="completed_tasks">Completed tasks</a></li>
 	            	<li><a href="uncompleted_tasks">Uncompleted tasks</a></li>
 	          	</ul>
 	    	</div>
@@ -41,7 +44,7 @@
 </head>
 <body>
 	
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding-top: 40px;">
 		{% block content %}
 		{% endblock %}
 	</div>

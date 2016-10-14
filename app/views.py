@@ -1,7 +1,8 @@
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, send_from_directory
 from app import app, models, db
 from .createTask import CreateTask
 import datetime
+import os
 
 # Create the route for the index
 @app.route('/')
@@ -38,7 +39,7 @@ def create_task():
 	# Check if the form is full
 	if form.validate_on_submit():
 		# Add the task to the database and commit the changements
-		db.session.add(models.Task(title=form.task_title.data, description=form.task_description.data, done=False, date=datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M")))
+		db.session.add(models.Task(title=form.task_title.data, description=form.task_description.data, done=False, date=datetime.datetime.utcnow().strftime("%d-%m-%Y %H:%M")))
 		db.session.commit()
 
 		# Reset the fields
@@ -85,3 +86,6 @@ def delete(page, id):
 		return redirect(url_for('index'))
 
 
+@app.route('/favicon.png') 
+def favicon(): 
+	return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.png')
