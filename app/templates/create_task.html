@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-<div class "row">
-	<div class="col-md-8 col-md-offset-1">
-		<h1>Create a task</h1>
-		<form action="" method="post" name="Create a task">
+<h1>Create a task</h1><br>
+<div class="col-md-10 col-md-offset-1">
+	<form role="form" action="" method="post" name="Create a task">
+		<div class="form-group">
 			{{ form.hidden_tag() }}
-			<p>Title<br>
-				{{ form.task_title }}<br>
-				{% for error in form.task_title.errors %}
-					<span style="color: red;">{{ error }}</span>
-				{% endfor %}</p>
-			<p>Description<br>
-				{{ form.task_description }}<br>
-				{% for error in form.task_title.errors %}
-					<span style="color: red;">{{ error }}</span>
-				{% endfor %}</p>
-			<p><input type="submit" value="Create" href="/"></p>
-		</form>
-	</div>
+
+			{{ form.task_title(placeholder="Enter the title of the task", class="form-control inputlg") }}
+			{% for error in form.task_title.errors %}
+				<span style="color: red;">{{ error }}</span>
+			{% endfor %}<br>
+
+			{{ form.task_description(placeholder="Enter the description of the task", class="form-control inputlg") }}
+			{% for error in form.task_description.errors %}
+				<span style="color: red;">{{ error }}</span>
+			{% endfor %}<br>
+			<p><input type="submit" value="Create" href="/" class="btn btn-primary center-block"></p>
+		</div>
+	</form>
 </div>
 {% endblock %}
