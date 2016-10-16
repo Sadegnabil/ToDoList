@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- If the title is given display the title otherwise display "No title specified" -->
 	{% if title %}
 	<title>{{ title }}</title>
 	{% else %}
 	<title>No title specified</title>
 	{% endif %}
+
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -15,8 +17,10 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+	<!-- Additional bootstrap toggles -->
 	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Import the favicon -->
@@ -27,9 +31,11 @@
 	    <div class="container-fluid">
 	    	<div class="navbar-header">
 				<a class="navbar-brand" title="ToDo List" href="/">
+					<!-- Add the favicon as the logo of the website -->
 					<img src="favicon.png" style="max-width: 30px; margin-top: -5px;">
 				</a>
 	        </div>
+	        <!-- Create the navbar options -->
 	        <div id="navbar" class="navbar-collapse collapse">
 		        <ul class="nav navbar-nav">
 		        	<li><a href="/">Overview</a></li>
@@ -44,6 +50,7 @@
 </head>
 <body>
 	
+	<!-- body of the page -->
 	<div class="container-fluid" style="padding-top: 40px;">
 		{% block content %}
 		{% endblock %}

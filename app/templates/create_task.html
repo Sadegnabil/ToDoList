@@ -1,20 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Create a task</h1><br>
+
+<!-- Display a title for the page so the user can now where he is -->
+<h1>Add a task</h1><br>
+
 <div class="col-md-10 col-md-offset-1">
+	<!-- Display the form -->
 	<form role="form" action="" method="post" name="Create a task">
 		<div class="form-group">
 			{{ form.hidden_tag() }}
 
+			<!-- Display a text input element for the title with a placeholder -->
 			{{ form.task_title(placeholder="Enter the title of the task", class="form-control inputlg") }}
+			<!-- Shows the errors in red -->
 			{% for error in form.task_title.errors %}
 				<span style="color: red;">{{ error }}</span>
 			{% endfor %}<br>
 
+			<!-- Display a text input element for the description with a placeholder -->
 			{{ form.task_description(placeholder="Enter the description of the task", class="form-control inputlg") }}
+			<!-- Shows the errors in red -->
 			{% for error in form.task_description.errors %}
 				<span style="color: red;">{{ error }}</span>
 			{% endfor %}<br>
+
+			<!-- Create the "Create" button used to submit the data -->
 			<p><input type="submit" value="Create" href="/" class="btn btn-primary center-block"></p>
 		</div>
 	</form>

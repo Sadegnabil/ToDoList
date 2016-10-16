@@ -1,33 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
+
+<!-- Display a title for the page so the user can now where he is -->
 <h1>Overview</h1>
+
+<!-- Create the table containing the tasks -->
 <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>State</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for row in array %}
-      <tr>
-        <td>{{ row.date }}</td>
-        <td>{{ row.title }}</td>
-        <td>{{ row.description }}</td>
+  <!-- Headers -->
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
 
-        {% if row.done == False %}
-        <td><input type="checkbox" checked data-toggle="toggle" data-on="ToDo" data-off="Done" onchange="window.location.href='/toggle/index/{{ row.id }}'"></td>
-        {% else %}
-        <td><input type="checkbox" data-toggle="toggle" data-on="ToDo" data-off="Done" onchange="window.location.href='/toggle/index/{{ row.id }}'"></td>
-        {% endif %}
+  <!-- Tasks -->
+  <tbody>
+    {% for row in array %}
+    <tr>
+      <td>{{ row.date }}</td>
+      <td>{{ row.title }}</td>
+      <td>{{ row.description }}</td>
 
-        <td><a href="/delete/index/{{ row.id }}" class="btn btn-danger">X</a></td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      <!-- Create the toggle button according to the state of the task-->
+      {% if row.done == False %}
+      <td><input type="checkbox" checked data-toggle="toggle" data-on="ToDo" data-off="Done" onchange="window.location.href='/toggle/index/{{ row.id }}'"></td>
+      {% else %}
+      <td><input type="checkbox" data-toggle="toggle" data-on="ToDo" data-off="Done" onchange="window.location.href='/toggle/index/{{ row.id }}'"></td>
+      {% endif %}
 
+      <!-- Create the delete button -->
+      <td><a href="/delete/index/{{ row.id }}" class="btn btn-danger">X</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
 {% endblock %}

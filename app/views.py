@@ -86,6 +86,7 @@ def delete(page, id):
 		return redirect(url_for('index'))
 
 
+# Create the route used to return the favicon/logo
 @app.route('/favicon.png') 
 def favicon(): 
 	return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.png')
