@@ -1,9 +1,4 @@
-bin/
-lib/
-local/
-pip-selfcheck.json
-share/
-include/
+venv/
 db_repository/
 *.pyc
 app.db
