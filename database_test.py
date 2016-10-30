@@ -15,7 +15,6 @@ def generate_data(n):
 		db.session.add(models.Task(date=date, title=title, description=description, done=state))
 	db.session.commit()
 
-
 """
 Function used to add tasks to the database with missing values
 """
