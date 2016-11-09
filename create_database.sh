@@ -1,2 +1,2 @@
-python db_create.py
-python database_test.py
+python3 db_create.py
+python3 database_test.py
