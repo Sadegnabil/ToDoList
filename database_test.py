@@ -37,7 +37,7 @@ def sample_database():
 	db.session.add(models.Task(date="29-10-2016 16:15", title="Web Application labs", description="Finish the remaining lab sheets", done=False))
 	db.session.add(models.Task(date="30-10-2016 09:48", title="CV", description="Finish CV and ask someone to read it", done=True))
 	db.session.add(models.Task(date="30-10-2016 10:35", title="Summer Internships", description="Apply for summer internships", done=False))
-	db.session.add(models.Task(date="30-10-2016 17:00", title="Operating System", description="Ask questions to J. Xu about the Operating System Coursework", done=False))
+	db.session.add(models.Task(date="30-10-2016 17:00", title="Operating System", description="Ask questions about the Operating System Coursework", done=False))
 	db.session.commit()
 
 sample_database()
